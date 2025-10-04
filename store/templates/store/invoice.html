@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice #{{ order.id }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #0066ff;
+        }
+        .order-info, .billing-info {
+            margin-bottom: 20px;
+        }
+        .order-info th, .order-info td, 
+        .billing-info th, .billing-info td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .total h3 {
+            color: #0066ff;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>E-Commerce Store</h1>
+    <p>Invoice for Order #{{ order.id }}</p>
+</div>
+
+<div class="order-info">
+    <h3>Order Details</h3>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <td>{{ order.id }}</td>
+        </tr>
+        <tr>
+            <th>Customer</th>
+            <td>{{ order.user.username }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ order.created_at|date:"d M Y, H:i" }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ order.status }}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="billing-info">
+    <h3>Items</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Unit Price (₹)</th>
+                <th>Total (₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.product.price }}</td>
+                <td>{{ item.total_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="total">
+    <h3>Subtotal: ₹{{ order.subtotal }}</h3>
+    <h3>GST (18%): ₹{{ order.gst_amount }}</h3>
+    <h3>Grand Total: ₹{{ order.grand_total }}</h3>
+</div>
+
+<div class="footer">
+    <p>Thank you for shopping with us!</p>
+</div>
+
+</body>
+</html>

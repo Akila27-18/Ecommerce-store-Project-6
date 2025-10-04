@@ -1,0 +1,101 @@
+/* General page styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff7f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ff6600;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+/* Category & Product Cards */
+.category, .product, .card, .category-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px;
+    display: inline-block;
+    vertical-align: top;
+    width: 220px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category:hover, .product:hover, .card:hover, .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.category img, .product img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Cart & Checkout styles */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+button, .btn {
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Gradient Buttons */
+.btn-gradient {
+    background: linear-gradient(90deg, #ff6600, #ff9933);
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(90deg, #e65c00, #e68a00);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .category, .product {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .category, .product {
+        width: 90%;
+    }
+}
